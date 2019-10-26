@@ -31,7 +31,6 @@
     ]
   },
   "devDependencies": {
-    "@brightsole/eslint-config-lint-node": "^1.0.0",
     "@brightsole/eslint-config-lint-node-ts": "0.0.0",
     "ava": "^2.4.0",
     "husky": "^0.14.2",
