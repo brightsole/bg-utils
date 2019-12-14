@@ -1,6 +1,6 @@
 # bg-utils
 
-### What is it?
+### What are they?
 <details>
   <summary>
     tl;dr: an ever expanding set of utils that are useful in many areas of board game development
@@ -20,17 +20,30 @@
 </details>
 <br/>
 
-### How to use it?
+### How to use them?
 <details>
   <summary>
     tl;dr: <TODO><code>`npm i @brightsole/bg-utils`</code>
   </summary>
   <br />
 
-  import it, and start using it!
+  import it, and start using the functions within!
+
+  ```js
+    import { selectUniqueRandoms } from '@brightsole/bg-utils';
+
+    const aFewRandoms = selectUniqueRandoms({ max: 3, numberToSelect: 2 });
+    console.log(aFewRandoms);
+  ```
 
 </details>
 <br/>
 
 ### TODO:
 nothing! No plan here, just a bucket to collect random useful methods for consumption elsewhere
+
+</br>
+
+If you're feeling generous, I'd love it if you would
+<a href="https://www.buymeacoffee.com/Ao9uzMG" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+Thank you!
