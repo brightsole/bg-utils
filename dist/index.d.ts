@@ -1,9 +1,13 @@
-declare type SelectRandomProps = {
-    arrayToSelectFrom?: unknown[];
-    resultArray?: unknown[];
+interface SelectRandomProps<Card> {
+    arrayToSelectFrom?: Card[];
+    resultArray?: Card[];
     numberToSelect: number;
-    maxIndex?: number;
+}
+declare const selectUniqueRandoms: <Card>({ numberToSelect, resultArray, arrayToSelectFrom, }: SelectRandomProps<Card>) => Card[];
+declare type GenerateUniqueProps = {
+    max: number;
+    numberToSelect: number;
 };
-declare const selectUniqueRandoms: ({ numberToSelect, resultArray, arrayToSelectFrom, maxIndex, }: SelectRandomProps) => unknown[];
-declare const shuffle: (arrayToShuffle: unknown[]) => unknown[];
-export { selectUniqueRandoms, shuffle };
+declare const selectUniqueIndices: ({ max, numberToSelect, }: GenerateUniqueProps) => number[];
+declare const shuffle: <Card>(arrayToShuffle: Card[]) => Card[];
+export { selectUniqueRandoms, selectUniqueIndices, shuffle };

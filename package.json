@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "lint": "eslint --fix .",
-    "build": "tsc index.js --outDir dist -d",
+    "build": "tsc index.ts --outDir dist -d",
     "precommit": "lint-staged",
     "prepush": "ava",
     "test": "ava"
