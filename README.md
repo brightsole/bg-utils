@@ -43,7 +43,4 @@
 nothing! No plan here, just a bucket to collect random useful methods for consumption elsewhere
 
 </br>
-
-If you're feeling generous, I'd love it if you would
 <a href="https://www.buymeacoffee.com/Ao9uzMG" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
-Thank you!
