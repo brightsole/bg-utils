@@ -1,6 +1,6 @@
 {
   "name": "@brightsole/bg-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "various utils for use in board game evaluation",
   "keywords": [
     "new",
