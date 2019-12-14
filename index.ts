@@ -1,27 +1,49 @@
 const selectRandom = (max: number): number =>
   Math.floor(Math.random() * (max + 1));
 
-type SelectRandomProps = {
-  arrayToSelectFrom: unknown[];
-  resultArray?: unknown[];
+interface SelectRandomProps<Card> {
+  arrayToSelectFrom?: Card[];
+  resultArray?: Card[];
   numberToSelect: number;
-  maxIndex?: number;
 };
-const selectUniqueRandoms = ({
+const selectUniqueRandoms = <Card>({
   numberToSelect,
   resultArray = [],
   arrayToSelectFrom,
-  maxIndex = arrayToSelectFrom.length,
-}: SelectRandomProps): unknown[] => {
+}: SelectRandomProps<Card>): Card[] => {
   if (resultArray.length === numberToSelect) return resultArray;
-  const remaining = arrayToSelectFrom || Array.from(Array(maxIndex + 1).keys());
 
-  const random = selectRandom(remaining.length - 1);
+  const random = selectRandom(arrayToSelectFrom.length - 1);
 
-  const result = resultArray.concat(remaining[random]);
+  const result = resultArray.concat(arrayToSelectFrom[random]);
+  const remaining = [
+    ...arrayToSelectFrom.slice(0, random),
+    ...arrayToSelectFrom.slice(random + 1),
+  ];
+
+  return selectUniqueRandoms({
+    numberToSelect,
+    resultArray: result,
+    arrayToSelectFrom: remaining,
+  });
+};
+
+type GenerateUniqueProps = {
+  max: number;
+  numberToSelect: number;
+};
+const selectUniqueIndices = ({
+  max,
+  numberToSelect,
+}: GenerateUniqueProps): number[] => {
+  const indices = Array.from(Array(max + 1).keys());
+
+  const random = selectRandom(indices.length - 1);
+
+  const result = [].concat(indices[random]);
   const remains = [
-    ...remaining.slice(0, random),
-    ...(remaining.length === random ? [] : remaining.slice(random + 1)),
+    ...indices.slice(0, random),
+    ...indices.slice(random + 1),
   ];
 
   return selectUniqueRandoms({
@@ -31,20 +53,19 @@ const selectUniqueRandoms = ({
   });
 };
 
-const randomizeArray = (arrayToShuffle: unknown[]): unknown[] =>
+const randomizeArray = <Card>(arrayToShuffle: Card[]): Card[] =>
   selectUniqueRandoms({
-    maxIndex: arrayToShuffle.length,
-    arrayToSelectFrom: arrayToShuffle,
-    numberToSelect: arrayToShuffle.length,
-  });
+      arrayToSelectFrom: arrayToShuffle,
+      numberToSelect: arrayToShuffle.length,
+    });
 
-const applyMultiple = (startingValue, times, appliedFunction) =>
+const applyMultiple = (startingValue: any, times: number, appliedFunction) =>
   Array.from(Array(times)).reduce(
     result => appliedFunction(result),
     startingValue
   );
 
-const shuffle = (arrayToShuffle: unknown[]): unknown[] =>
+const shuffle = <Card>(arrayToShuffle: Card[]): Card[] =>
   applyMultiple(arrayToShuffle, 7, randomizeArray);
 
-export { selectUniqueRandoms, shuffle };
+export { selectUniqueRandoms, selectUniqueIndices, shuffle };
